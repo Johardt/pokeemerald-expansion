@@ -22061,4 +22061,38 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_ALL] =
         .battleAnimScript = gBattleAnimMove_GMaxRapidFlow,
     },
 
+    [MOVE_INCAPACITATE] =
+    {
+        .name = COMPOUND_STRING("Incapacitate"),
+        .description = COMPOUND_STRING(
+            "Hits the opponent with a\n"
+            "quick and vicious strike."),
+        .effect = EFFECT_HIT,
+        .power = 10,
+        .type = TYPE_DARK,
+        .accuracy = 0,
+        .pp = 35,
+        .target = MOVE_TARGET_SELECTED,
+        .priority = 1,
+        .category = DAMAGE_CATEGORY_PHYSICAL,
+        .makesContact = TRUE,
+        .additionalEffects = ADDITIONAL_EFFECTS(
+        {
+            .moveEffect = MOVE_EFFECT_ACC_MINUS_2,
+            .chance = 100,
+        },
+        {
+            .moveEffect = MOVE_EFFECT_CONFUSION,
+            .chance = 100,
+        },
+        {
+            .moveEffect = MOVE_EFFECT_PARALYSIS,
+            .chance = 100,
+        }),
+        .contestEffect = CONTEST_EFFECT_HIGHLY_APPEALING,
+        .contestCategory = CONTEST_CATEGORY_TOUGH,
+        .contestComboStarterId = COMBO_STARTER_POUND,
+        .contestComboMoves = {0},
+        .battleAnimScript = gBattleAnimMove_KarateChop,
+    },
 };

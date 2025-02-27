@@ -6868,6 +6868,7 @@ static const struct LevelUpMove sCelebiLevelUpLearnset[] = {
 static const struct LevelUpMove sTreeckoLevelUpLearnset[] = {
     LEVEL_UP_MOVE( 1, MOVE_POUND),
     LEVEL_UP_MOVE( 1, MOVE_LEER),
+    LEVEL_UP_MOVE( 1, MOVE_INCAPACITATE),
     LEVEL_UP_MOVE( 5, MOVE_ABSORB),
     LEVEL_UP_MOVE( 9, MOVE_QUICK_ATTACK),
     LEVEL_UP_MOVE(13, MOVE_MEGA_DRAIN),
