@@ -48,15 +48,24 @@ PlayersHouse_1F_EventScript_MomGoSeeRoom::
 LittlerootTown_BrendansHouse_2F_EventScript_WallClock::
 	lockall
 	setvar VAR_0x8004, MALE
-	goto PlayersHouse_2F_EventScript_WallClock
+	goto PlayersHouse_2F_EventScript_WallClock_SkipTutorial
 	end
 
 LittlerootTown_MaysHouse_2F_EventScript_WallClock::
 	lockall
 	setvar VAR_0x8004, FEMALE
-	goto PlayersHouse_2F_EventScript_WallClock
+	goto PlayersHouse_2F_EventScript_WallClock_SkipTutorial
 	end
-
+	
+PlayersHouse_2F_EventScript_WallClock_SkipTutorial::
+    goto_if_set FLAG_SET_WALL_CLOCK, PlayersHouse_2F_EventScript_CheckWallClock
+    msgbox PlayersHouse_2F_Text_ClockIsStopped, MSGBOX_DEFAULT
+    call PlayersHouse_2F_EventScript_SetWallClock
+	delay 30
+	setflag FLAG_SET_WALL_CLOCK
+	releaseall
+	end
+    
 PlayersHouse_2F_EventScript_WallClock::
 	goto_if_set FLAG_SET_WALL_CLOCK, PlayersHouse_2F_EventScript_CheckWallClock
 	msgbox PlayersHouse_2F_Text_ClockIsStopped, MSGBOX_DEFAULT
