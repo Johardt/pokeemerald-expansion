@@ -49,10 +49,18 @@ LittlerootTown_MaysHouse_2F_EventScript_CheckInitDecor::
 
 LittlerootTown_MaysHouse_2F_EventScript_RivalsPokeBall::
 	lockall
-	goto_if_eq VAR_LITTLEROOT_RIVAL_STATE, 2, LittlerootTown_MaysHouse_2F_EventScript_MeetMay
-	msgbox RivalsHouse_2F_Text_ItsRivalsPokeBall, MSGBOX_DEFAULT
+	msgbox RivalsHouse_2F_Text_StealPokemon, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, YES, LittlerootTown_MaysHouse2F_EventScript_StealPokemon
+	msgbox RivalsHouse_2F_Text_StealPokemon_BetterNot MSGBOX_DEFAULT
 	releaseall
 	end
+
+LittlerootTown_MaysHouse2F_EventScript_StealPokemon::
+    lockall
+    playse SE_PIN
+    setflag FLAG_HIDE_LITTLEROOT_TOWN_MAYS_HOUSE_2F_POKE_BALL
+    releaseall
+    end
 
 LittlerootTown_MaysHouse_2F_EventScript_MeetMay::
 	delay 10

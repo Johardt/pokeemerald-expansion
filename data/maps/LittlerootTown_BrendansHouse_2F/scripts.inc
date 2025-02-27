@@ -50,10 +50,18 @@ LittlerootTown_BrendansHouse_2F_EventScript_CheckInitDecor::
 
 LittlerootTown_BrendansHouse_2F_EventScript_RivalsPokeBall::
 	lockall
-	goto_if_eq VAR_LITTLEROOT_RIVAL_STATE, 2, LittlerootTown_BrendansHouse_2F_EventScript_MeetBrendan
-	msgbox RivalsHouse_2F_Text_ItsRivalsPokeBall, MSGBOX_DEFAULT
+	msgbox RivalsHouse_2F_Text_StealPokemon, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, YES, LittlerootTown_BrendansHouse2F_EventScript_StealPokemon
+	msgbox RivalsHouse_2F_Text_StealPokemon_BetterNot MSGBOX_DEFAULT
 	releaseall
 	end
+
+LittlerootTown_BrendansHouse2F_EventScript_StealPokemon::
+    lockall
+    playse SE_PIN
+    setflag FLAG_HIDE_LITTLEROOT_TOWN_BRENDANS_HOUSE_2F_POKE_BALL
+    releaseall
+    end
 
 LittlerootTown_BrendansHouse_2F_EventScript_MeetBrendan::
 	delay 10
@@ -302,3 +310,11 @@ PlayersHouse_2F_Text_ItsAGameCube:
 	.string "It's a Nintendo GameCube.\p"
 	.string "A Game Boy Advance is connected to\n"
 	.string "serve as the Controller.$"
+	
+RivalsHouse_2F_Text_StealPokemon:
+    .string "A POKéBALL... No one would notice if I\n"
+    .string "take it... right?\p"
+    .string "Take the POKéBALL?$"
+
+RivalsHouse_2F_Text_StealPokemon_BetterNot:
+    .string "I probably shouldn't...\n$"
