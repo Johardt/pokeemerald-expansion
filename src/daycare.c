@@ -602,42 +602,42 @@ static void InheritIVs(struct Pokemon *egg, struct DayCare *daycare)
     motherIV = GetBoxMonData(&daycare->mons[0].mon, MON_DATA_HP_IV);
     fatherIV = GetBoxMonData(&daycare->mons[1].mon, MON_DATA_HP_IV);
     iv = motherIV > fatherIV ? motherIV : fatherIV;
-    ivRange = 31 - iv + 1;
+    ivRange = MAX_PER_STAT_IVS - iv + 1;
     iv = iv + (Random() % ivRange);
     SetMonData(egg, MON_DATA_HP_IV, &iv);
 
     motherIV = GetBoxMonData(&daycare->mons[0].mon, MON_DATA_ATK_IV);
     fatherIV = GetBoxMonData(&daycare->mons[1].mon, MON_DATA_ATK_IV);
     iv = motherIV > fatherIV ? motherIV : fatherIV;
-    ivRange = 31 - iv + 1;
+    ivRange = MAX_PER_STAT_IVS - iv + 1;
     iv = iv + (Random() % ivRange);
     SetMonData(egg, MON_DATA_ATK_IV, &iv);
 
     motherIV = GetBoxMonData(&daycare->mons[0].mon, MON_DATA_DEF_IV);
     fatherIV = GetBoxMonData(&daycare->mons[1].mon, MON_DATA_DEF_IV);
     iv = motherIV > fatherIV ? motherIV : fatherIV;
-    ivRange = 31 - iv + 1;
+    ivRange = MAX_PER_STAT_IVS - iv + 1;
     iv = iv + (Random() % ivRange);
     SetMonData(egg, MON_DATA_DEF_IV, &iv);
 
     motherIV = GetBoxMonData(&daycare->mons[0].mon, MON_DATA_SPEED_IV);
     fatherIV = GetBoxMonData(&daycare->mons[1].mon, MON_DATA_SPEED_IV);
     iv = motherIV > fatherIV ? motherIV : fatherIV;
-    ivRange = 31 - iv + 1;
+    ivRange = MAX_PER_STAT_IVS - iv + 1;
     iv = iv + (Random() % ivRange);
     SetMonData(egg, MON_DATA_SPEED_IV, &iv);
 
     motherIV = GetBoxMonData(&daycare->mons[0].mon, MON_DATA_SPATK_IV);
     fatherIV = GetBoxMonData(&daycare->mons[1].mon, MON_DATA_SPATK_IV);
     iv = motherIV > fatherIV ? motherIV : fatherIV;
-    ivRange = 31 - iv + 1;
+    ivRange = MAX_PER_STAT_IVS - iv + 1;
     iv = iv + (Random() % ivRange);
     SetMonData(egg, MON_DATA_SPATK_IV, &iv);
 
     motherIV = GetBoxMonData(&daycare->mons[0].mon, MON_DATA_SPDEF_IV);
     fatherIV = GetBoxMonData(&daycare->mons[1].mon, MON_DATA_SPDEF_IV);
     iv = motherIV > fatherIV ? motherIV : fatherIV;
-    ivRange = 31 - iv + 1;
+    ivRange = MAX_PER_STAT_IVS - iv + 1;
     iv = iv + (Random() % ivRange);
     SetMonData(egg, MON_DATA_SPDEF_IV, &iv);
 }
