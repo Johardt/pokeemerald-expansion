@@ -3888,6 +3888,7 @@ void SetMoveEffect(bool32 primary, bool32 certain)
                     gProtectStructs[gBattlerTarget].obstructed = FALSE;
                     gProtectStructs[gBattlerTarget].silkTrapped = FALSE;
                     gProtectStructs[gBattlerTarget].burningBulwarked = FALSE;
+                    gProtectStructs[gBattlerTarget].cosmicShielded = FALSE;
                     BattleScriptPush(gBattlescriptCurrInstr + 1);
                     if (gCurrentMove == MOVE_HYPERSPACE_FURY)
                         gBattlescriptCurrInstr = BattleScript_HyperspaceFuryRemoveProtect;
@@ -6269,6 +6270,13 @@ static void Cmd_moveend(void)
                     gBattlescriptCurrInstr = BattleScript_BeakBlastBurn;
                     effect = 1;
                 }
+            }
+            else if (gProtectStructs[gBattlerTarget].cosmicShielded)
+            {
+                gBattleScripting.moveEffect = MOVE_EFFECT_ALL_STATS_UP | MOVE_EFFECT_AFFECTS_USER;
+                BattleScriptPushCursor();
+                gBattlescriptCurrInstr = BattleScript_KingsShieldEffect;
+                effect = 1;
             }
             gBattleScripting.moveendState++;
             break;
@@ -11628,7 +11636,8 @@ static void Cmd_setprotectlike(void)
 
     if ((sProtectSuccessRates[gDisableStructs[gBattlerAttacker].protectUses] >= Random() && notLastTurn)
         || (gCurrentMove == MOVE_WIDE_GUARD && B_WIDE_GUARD != GEN_5)
-        || (gCurrentMove == MOVE_QUICK_GUARD && B_QUICK_GUARD != GEN_5))
+        || (gCurrentMove == MOVE_QUICK_GUARD && B_QUICK_GUARD != GEN_5)
+        || (gCurrentMove == MOVE_COSMIC_SHIELD))
     {
         if (!GetMoveProtectSide(gCurrentMove)) // Protects one mon only.
         {
@@ -11640,6 +11649,11 @@ static void Cmd_setprotectlike(void)
             else if (gCurrentMove == MOVE_DETECT || gCurrentMove == MOVE_PROTECT)
             {
                 gProtectStructs[gBattlerAttacker].protected = TRUE;
+                gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_PROTECTED_ITSELF;
+            }
+            else if (gCurrentMove == MOVE_COSMIC_SHIELD) 
+            {
+                gProtectStructs[gBattlerAttacker].cosmicShielded = TRUE;
                 gBattleCommunication[MULTISTRING_CHOOSER] = B_MSG_PROTECTED_ITSELF;
             }
             else if (gCurrentMove == MOVE_SPIKY_SHIELD)

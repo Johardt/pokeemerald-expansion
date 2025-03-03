@@ -311,7 +311,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
             gOverworldPalette_Porygon,
             gShinyOverworldPalette_Porygon
         )
-        .levelUpLearnset = sPorygonLevelUpLearnset,
+        .levelUpLearnset = sPorygonILevelUpLearnset,
         .teachableLearnset = sPorygonTeachableLearnset,
         .evolutions = EVOLUTION({EVO_LEVEL, 16, SPECIES_PORYGON2}),
     },
@@ -382,7 +382,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
             gOverworldPalette_Porygon2,
             gShinyOverworldPalette_Porygon2
         )
-        .levelUpLearnset = sPorygon2LevelUpLearnset,
+        .levelUpLearnset = sPorygon2ILevelUpLearnset,
         .teachableLearnset = sPorygon2TeachableLearnset,
         .evolutions = EVOLUTION({EVO_LEVEL, 32, SPECIES_PORYGON_Z}),
     },
@@ -451,7 +451,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
             gOverworldPalette_PorygonZ,
             gShinyOverworldPalette_PorygonZ
         )
-        .levelUpLearnset = sPorygonZLevelUpLearnset,
+        .levelUpLearnset = sPorygonXLevelUpLearnset,
         .teachableLearnset = sPorygonZTeachableLearnset,
     },
 };
