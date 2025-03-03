@@ -244,4 +244,214 @@ const struct SpeciesInfo gSpeciesInfo[] =
         //.perfectIVCount = NUM_STATS,
     },
     */
+    
+    
+    
+    [SPECIES_PORYGON_I] =
+    {
+        .baseHP        = 80,
+        .baseAttack    = 80,
+        .baseDefense   = 80,
+        .baseSpeed     = 80,
+        .baseSpAttack  = 80,
+        .baseSpDefense = 80,
+        .types = MON_TYPES(TYPE_STELLAR),
+        .catchRate = 45,
+        .expYield = (P_UPDATED_EXP_YIELDS >= GEN_5) ? 79 : 130,
+        .evYield_SpAttack = 1,
+        .genderRatio = MON_GENDERLESS,
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MINERAL),
+        .abilities = { ABILITY_TOTAL_IMMUNITY, ABILITY_NONE },
+        .perfectIVCount = NUM_STATS,
+        .bodyColor = BODY_COLOR_PINK,
+        .speciesName = _("Porygon-I"),
+        .cryId = CRY_PORYGON,
+        .natDexNum = NATIONAL_DEX_PORYGON, // TODO
+        .categoryName = _("Virtual"),
+        .height = 8,
+        .weight = 365,
+        .description = COMPOUND_STRING(
+            "It is capable of reverting itself entirely\n"
+            "back to program data in order to enter\n"
+            "cyberspace. A Porygon is copy-\n"
+            "protected so it cannot be duplicated."),
+        .pokemonScale = 328,
+        .pokemonOffset = 15,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .frontPic = gMonFrontPic_Porygon,
+        .frontPicSize = MON_COORDS_SIZE(40, 40),
+        .frontPicYOffset = P_GBA_STYLE_SPECIES_GFX ? 13 : 14,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(1, 10),
+            ANIMCMD_FRAME(0, 10),
+            ANIMCMD_FRAME(1, 10),
+            ANIMCMD_FRAME(0, 10),
+        ),
+        .frontAnimId = ANIM_V_JUMPS_SMALL,
+        .backPic = gMonBackPic_Porygon,
+        .backPicSize = P_GBA_STYLE_SPECIES_GFX ? MON_COORDS_SIZE(48, 40) : MON_COORDS_SIZE(56, 40),
+        .backPicYOffset = 13,
+        .backAnimId = BACK_ANIM_H_VIBRATE,
+        .palette = gMonPalette_Porygon,
+        .shinyPalette = gMonShinyPalette_Porygon,
+        .iconSprite = gMonIcon_Porygon,
+        .iconPalIndex = 0,
+        SHADOW(0, -2, SHADOW_SIZE_S)
+        FOOTPRINT(Porygon)
+        OVERWORLD(
+            sPicTable_Porygon,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_NONE,
+            sAnimTable_Following,
+            gOverworldPalette_Porygon,
+            gShinyOverworldPalette_Porygon
+        )
+        .levelUpLearnset = sPorygonLevelUpLearnset,
+        .teachableLearnset = sPorygonTeachableLearnset,
+        .evolutions = EVOLUTION({EVO_LEVEL, 16, SPECIES_PORYGON2}),
+    },
+    
+    [SPECIES_PORYGON2I] =
+    {
+        .baseHP        = 120,
+        .baseAttack    = 120,
+        .baseDefense   = 120,
+        .baseSpeed     = 120,
+        .baseSpAttack  = 120,
+        .baseSpDefense = 120,
+        .types = MON_TYPES(TYPE_STELLAR),
+        .catchRate = 45,
+        .expYield = 180,
+        .evYield_SpAttack = 2,
+        .genderRatio = MON_GENDERLESS,
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MINERAL),
+        .abilities = { ABILITY_TOTAL_IMMUNITY, ABILITY_NONE },
+        .perfectIVCount = NUM_STATS,
+        .bodyColor = BODY_COLOR_RED,
+        .speciesName = _("Porygon-2I"),
+        .cryId = CRY_PORYGON2,
+        .natDexNum = NATIONAL_DEX_PORYGON2,
+        .categoryName = _("Virtual"),
+        .height = 6,
+        .weight = 325,
+        .description = COMPOUND_STRING(
+            "It was created by humans using the power\n"
+            "of science. It has been given artificial\n"
+            "intelligence that enables it to learn new\n"
+            "gestures and emotions on its own."),
+        .pokemonScale = 320,
+        .pokemonOffset = 17,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .frontPic = gMonFrontPic_Porygon2,
+        .frontPicSize = MON_COORDS_SIZE(40, 40),
+        .frontPicYOffset = 15,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(0, 15),
+            ANIMCMD_FRAME(1, 15),
+            ANIMCMD_FRAME(0, 15),
+            ANIMCMD_FRAME(1, 15),
+            ANIMCMD_FRAME(0, 10),
+        ),
+        .frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .enemyMonElevation = P_GBA_STYLE_SPECIES_GFX ? 0 : 9,
+        .backPic = gMonBackPic_Porygon2,
+        .backPicSize = MON_COORDS_SIZE(56, 48),
+        .backPicYOffset = P_GBA_STYLE_SPECIES_GFX ? 10 : 11,
+        .backAnimId = BACK_ANIM_H_VIBRATE,
+        .palette = gMonPalette_Porygon2,
+        .shinyPalette = gMonShinyPalette_Porygon2,
+        .iconSprite = gMonIcon_Porygon2,
+        .iconPalIndex = 0,
+        SHADOW(0, 5, SHADOW_SIZE_S)
+        FOOTPRINT(Porygon2)
+        OVERWORLD(
+            sPicTable_Porygon2,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_NONE,
+            sAnimTable_Following,
+            gOverworldPalette_Porygon2,
+            gShinyOverworldPalette_Porygon2
+        )
+        .levelUpLearnset = sPorygon2LevelUpLearnset,
+        .teachableLearnset = sPorygon2TeachableLearnset,
+        .evolutions = EVOLUTION({EVO_LEVEL, 32, SPECIES_PORYGON_Z}),
+    },
+    
+    [SPECIES_PORYGON_X] =
+    {
+        .baseHP        = 160,
+        .baseAttack    = 160,
+        .baseDefense   = 160,
+        .baseSpeed     = 160,
+        .baseSpAttack  = 160,
+        .baseSpDefense = 160,
+        .types = MON_TYPES(TYPE_NORMAL),
+        .catchRate = 30,
+        .expYield = 268,
+        .evYield_SpAttack = 3,
+        .genderRatio = MON_GENDERLESS,
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MINERAL),
+        .abilities = { ABILITY_TOTAL_IMMUNITY, ABILITY_NONE },
+        .bodyColor = BODY_COLOR_RED,
+        .speciesName = _("Porygon-X"),
+        .cryId = CRY_PORYGON_Z,
+        .natDexNum = NATIONAL_DEX_PORYGON_Z,
+        .categoryName = _("Virtual"),
+        .height = 9,
+        .weight = 340,
+        .description = COMPOUND_STRING(
+            "In order to create a more advanced\n"
+            "Pokémon, an additional program was\n"
+            "installed, but apparently it contained a\n"
+            "defect that made it move oddly."),
+        .pokemonScale = 338,
+        .pokemonOffset = 8,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .frontPic = gMonFrontPic_PorygonZ,
+        .frontPicSize = MON_COORDS_SIZE(40, 56),
+        .frontPicYOffset = 6,
+        .frontAnimFrames = ANIM_FRAMES(
+            ANIMCMD_FRAME(1, 30),
+            ANIMCMD_FRAME(0, 30),
+            ANIMCMD_FRAME(1, 30),
+            ANIMCMD_FRAME(0, 40),
+        ),
+        .frontAnimId = ANIM_CIRCLE_C_CLOCKWISE_SLOW,
+        .enemyMonElevation = 12,
+        .backPic = gMonBackPic_PorygonZ,
+        .backPicSize = MON_COORDS_SIZE(64, 56),
+        .backPicYOffset = 6,
+        .backAnimId = BACK_ANIM_H_VIBRATE,
+        .palette = gMonPalette_PorygonZ,
+        .shinyPalette = gMonShinyPalette_PorygonZ,
+        .iconSprite = gMonIcon_PorygonZ,
+        .iconPalIndex = 0,
+        SHADOW(0, 17, SHADOW_SIZE_S)
+        FOOTPRINT(PorygonZ)
+        OVERWORLD(
+            sPicTable_PorygonZ,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            sAnimTable_Following,
+            gOverworldPalette_PorygonZ,
+            gShinyOverworldPalette_PorygonZ
+        )
+        .levelUpLearnset = sPorygonZLevelUpLearnset,
+        .teachableLearnset = sPorygonZTeachableLearnset,
+    },
 };

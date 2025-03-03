@@ -6018,6 +6018,7 @@ static void Cmd_playstatchangeanimation(void)
                 else if (!gSideTimers[GetBattlerSide(battler)].mistTimer
                         && GetBattlerHoldEffect(battler, TRUE) != HOLD_EFFECT_CLEAR_AMULET
                         && ability != ABILITY_CLEAR_BODY
+                        && ability != ABILITY_TOTAL_IMMUNITY
                         && ability != ABILITY_FULL_METAL_BODY
                         && ability != ABILITY_WHITE_SMOKE
                         && !((ability == ABILITY_KEEN_EYE || ability == ABILITY_MINDS_EYE) && currStat == STAT_ACC)
@@ -16780,6 +16781,7 @@ static bool8 CanAbilityPreventStatLoss(u16 abilityDef)
     case ABILITY_CLEAR_BODY:
     case ABILITY_FULL_METAL_BODY:
     case ABILITY_WHITE_SMOKE:
+    case ABILITY_TOTAL_IMMUNITY:
         return TRUE;
     }
     return FALSE;

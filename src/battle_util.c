@@ -6823,6 +6823,7 @@ bool32 CanBeSlept(u32 battler, u32 ability, enum SleepClauseBlock isBlockedBySle
      || ability == ABILITY_VITAL_SPIRIT
      || ability == ABILITY_COMATOSE
      || ability == ABILITY_PURIFYING_SALT
+     || ability == ABILITY_TOTAL_IMMUNITY
      || gSideStatuses[GetBattlerSide(battler)] & SIDE_STATUS_SAFEGUARD
      || gBattleMons[battler].status1 & STATUS1_ANY
      || IsAbilityOnSide(battler, ABILITY_SWEET_VEIL)
@@ -6840,6 +6841,7 @@ bool32 CanBePoisoned(u32 battlerAtk, u32 battlerDef, u32 defAbility)
      || defAbility == ABILITY_IMMUNITY
      || defAbility == ABILITY_COMATOSE
      || defAbility == ABILITY_PURIFYING_SALT
+     || defAbility == ABILITY_TOTAL_IMMUNITY
      || IsAbilityOnSide(battlerDef, ABILITY_PASTEL_VEIL)
      || IsAbilityStatusProtected(battlerDef, defAbility)
      || IsBattlerTerrainAffected(battlerDef, STATUS_FIELD_MISTY_TERRAIN))
@@ -6857,6 +6859,7 @@ bool32 CanBeBurned(u32 battler, u32 ability)
      || ability == ABILITY_COMATOSE
      || ability == ABILITY_THERMAL_EXCHANGE
      || ability == ABILITY_PURIFYING_SALT
+     || ability == ABILITY_TOTAL_IMMUNITY
      || IsAbilityStatusProtected(battler, ability)
      || IsBattlerTerrainAffected(battler, STATUS_FIELD_MISTY_TERRAIN))
         return FALSE;
@@ -6870,6 +6873,7 @@ bool32 CanBeParalyzed(u32 battler, u32 ability)
       || ability == ABILITY_LIMBER
       || ability == ABILITY_COMATOSE
       || ability == ABILITY_PURIFYING_SALT
+      || ability == ABILITY_TOTAL_IMMUNITY
       || gBattleMons[battler].status1 & STATUS1_ANY
       || IsAbilityStatusProtected(battler, ability)
       || IsBattlerTerrainAffected(battler, STATUS_FIELD_MISTY_TERRAIN))
@@ -6886,6 +6890,7 @@ bool32 CanBeFrozen(u32 battler)
      || ability == ABILITY_MAGMA_ARMOR
      || ability == ABILITY_COMATOSE
      || ability == ABILITY_PURIFYING_SALT
+     || ability == ABILITY_TOTAL_IMMUNITY
      || gBattleMons[battler].status1 & STATUS1_ANY
      || IsAbilityStatusProtected(battler, ability)
      || IsBattlerTerrainAffected(battler, STATUS_FIELD_MISTY_TERRAIN))
@@ -6901,6 +6906,7 @@ bool32 CanGetFrostbite(u32 battler)
       || ability == ABILITY_MAGMA_ARMOR
       || ability == ABILITY_COMATOSE
       || ability == ABILITY_PURIFYING_SALT
+      || ability == ABILITY_TOTAL_IMMUNITY
       || gBattleMons[battler].status1 & STATUS1_ANY
       || IsAbilityStatusProtected(battler, ability)
       || IsBattlerTerrainAffected(battler, STATUS_FIELD_MISTY_TERRAIN))
@@ -6910,7 +6916,9 @@ bool32 CanGetFrostbite(u32 battler)
 
 bool32 CanBeConfused(u32 battler)
 {
-    if (GetBattlerAbility(battler) == ABILITY_OWN_TEMPO
+    u16 ability = GetBattlerAbility(battler)
+    if (ability == ABILITY_OWN_TEMPO
+     || ability == ABILITY_TOTAL_IMMUNITY
      || gBattleMons[battler].status2 & STATUS2_CONFUSION
      || IsBattlerTerrainAffected(battler, STATUS_FIELD_MISTY_TERRAIN))
         return FALSE;

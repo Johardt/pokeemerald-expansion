@@ -2408,4 +2408,15 @@ const struct Ability gAbilitiesInfo[ABILITIES_COUNT] =
         .cantBeSwapped = TRUE,
         .cantBeTraced = TRUE,
     },
+    
+    [ABILITY_TOTAL_IMMUNITY] =
+    {
+        .name = _("Total Immunity"),
+        .description = COMPOUND_STRING("Immunity to status effects."),
+        .aiRating = 10,
+        .cantBeCopied = TRUE,
+        .cantBeSwapped = TRUE,
+        .cantBeTraced = TRUE,
+        .failsOnImposter = TRUE,
+    }
 };
