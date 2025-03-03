@@ -6916,7 +6916,7 @@ bool32 CanGetFrostbite(u32 battler)
 
 bool32 CanBeConfused(u32 battler)
 {
-    u16 ability = GetBattlerAbility(battler)
+    u16 ability = GetBattlerAbility(battler);
     if (ability == ABILITY_OWN_TEMPO
      || ability == ABILITY_TOTAL_IMMUNITY
      || gBattleMons[battler].status2 & STATUS2_CONFUSION
