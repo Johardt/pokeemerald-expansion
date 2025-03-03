@@ -594,114 +594,52 @@ static void UNUSED TriggerPendingDaycareMaleEgg(void)
 
 static void InheritIVs(struct Pokemon *egg, struct DayCare *daycare)
 {
-    u16 motherItem = GetBoxMonData(&daycare->mons[0].mon, MON_DATA_HELD_ITEM);
-    u16 fatherItem = GetBoxMonData(&daycare->mons[1].mon, MON_DATA_HELD_ITEM);
-    u8 i, start;
-    u8 selectedIvs[5];
-    u8 availableIVs[NUM_STATS];
-    u8 whichParents[5];
     u8 motherIV;
     u8 fatherIV;
     u8 ivRange;
     u8 iv;
-    u8 howManyIVs = 6;
 
-    // if (motherItem == ITEM_DESTINY_KNOT || fatherItem == ITEM_DESTINY_KNOT)
-    //     howManyIVs = 5;
+    motherIV = GetBoxMonData(&daycare->mons[0].mon, MON_DATA_HP_IV);
+    fatherIV = GetBoxMonData(&daycare->mons[1].mon, MON_DATA_HP_IV);
+    iv = motherIV > fatherIV ? motherIV : fatherIV;
+    ivRange = 31 - iv + 1;
+    iv = iv + (Random() % ivRange);
+    SetMonData(egg, MON_DATA_HP_IV, &iv);
 
-    // Initialize a list of IV indices.
-    for (i = 0; i < NUM_STATS; i++)
-    {
-        availableIVs[i] = i;
-    }
+    motherIV = GetBoxMonData(&daycare->mons[0].mon, MON_DATA_ATK_IV);
+    fatherIV = GetBoxMonData(&daycare->mons[1].mon, MON_DATA_ATK_IV);
+    iv = motherIV > fatherIV ? motherIV : fatherIV;
+    ivRange = 31 - iv + 1;
+    iv = iv + (Random() % ivRange);
+    SetMonData(egg, MON_DATA_ATK_IV, &iv);
 
-    start = 0;
-    if (ItemId_GetHoldEffect(motherItem) == HOLD_EFFECT_POWER_ITEM &&
-        ItemId_GetHoldEffect(fatherItem) == HOLD_EFFECT_POWER_ITEM)
-    {
-        whichParents[0] = Random() % DAYCARE_MON_COUNT;
-        selectedIvs[0] = ItemId_GetSecondaryId(
-            GetBoxMonData(&daycare->mons[whichParents[0]].mon, MON_DATA_HELD_ITEM));
-        RemoveIVIndexFromList(availableIVs, selectedIvs[0]);
-        start++;
-    }
-    else if (ItemId_GetHoldEffect(motherItem) == HOLD_EFFECT_POWER_ITEM)
-    {
-        whichParents[0] = 0;
-        selectedIvs[0] = ItemId_GetSecondaryId(motherItem);
-        RemoveIVIndexFromList(availableIVs, selectedIvs[0]);
-        start++;
-    }
-    else if (ItemId_GetHoldEffect(fatherItem) == HOLD_EFFECT_POWER_ITEM)
-    {
-        whichParents[0] = 1;
-        selectedIvs[0] = ItemId_GetSecondaryId(fatherItem);
-        RemoveIVIndexFromList(availableIVs, selectedIvs[0]);
-        start++;
-    }
+    motherIV = GetBoxMonData(&daycare->mons[0].mon, MON_DATA_DEF_IV);
+    fatherIV = GetBoxMonData(&daycare->mons[1].mon, MON_DATA_DEF_IV);
+    iv = motherIV > fatherIV ? motherIV : fatherIV;
+    ivRange = 31 - iv + 1;
+    iv = iv + (Random() % ivRange);
+    SetMonData(egg, MON_DATA_DEF_IV, &iv);
 
-    // Select which IVs that will be inherited.
-    for (i = start; i < howManyIVs; i++)
-    {
-        // Randomly pick an IV from the available list and stop from being chosen again.
-        // BUG: Instead of removing the IV that was just picked, this
-        // removes position 0 (HP) then position 1 (DEF), then position 2. This is why HP and DEF
-        // have a lower chance to be inherited in Emerald and why the IV picked for inheritance can
-        // be repeated. Amusingly, FRLG and RS also got this wrong. They remove selectedIvs[i], which
-        // is not an index! This means that it can sometimes remove the wrong stat.
-        #ifndef BUGFIX
-        selectedIvs[i] = availableIVs[Random() % (NUM_STATS - i)];
-        RemoveIVIndexFromList(availableIVs, i);
-        #else
-        u8 index = Random() % (NUM_STATS - i);
-        selectedIvs[i] = availableIVs[index];
-        RemoveIVIndexFromList(availableIVs, index);
-        #endif
-    }
+    motherIV = GetBoxMonData(&daycare->mons[0].mon, MON_DATA_SPEED_IV);
+    fatherIV = GetBoxMonData(&daycare->mons[1].mon, MON_DATA_SPEED_IV);
+    iv = motherIV > fatherIV ? motherIV : fatherIV;
+    ivRange = 31 - iv + 1;
+    iv = iv + (Random() % ivRange);
+    SetMonData(egg, MON_DATA_SPEED_IV, &iv);
 
-    // Determine which parent each of the selected IVs should inherit from.
-    for (i = start; i < howManyIVs; i++)
-    {
-        whichParents[i] = Random() % DAYCARE_MON_COUNT;
-    }
+    motherIV = GetBoxMonData(&daycare->mons[0].mon, MON_DATA_SPATK_IV);
+    fatherIV = GetBoxMonData(&daycare->mons[1].mon, MON_DATA_SPATK_IV);
+    iv = motherIV > fatherIV ? motherIV : fatherIV;
+    ivRange = 31 - iv + 1;
+    iv = iv + (Random() % ivRange);
+    SetMonData(egg, MON_DATA_SPATK_IV, &iv);
 
-    // Set each of inherited IVs on the egg mon.
-    for (i = 0; i < howManyIVs; i++)
-    {
-        switch (selectedIvs[i])
-        {
-            case 0:
-                motherIV = GetBoxMonData(&daycare->mons[0].mon, MON_DATA_HP_IV);
-                fatherIV = GetBoxMonData(&daycare->mons[1].mon, MON_DATA_HP_IV);
-                iv = motherIV > fatherIV ? motherIV : fatherIV;
-                
-                ivRange = 31 - iv + 1;
-                iv = iv + (Random() % rna)
-                
-                SetMonData(egg, MON_DATA_HP_IV, &iv);
-                break;
-            case 1:
-                iv = GetBoxMonData(&daycare->mons[whichParents[i]].mon, MON_DATA_ATK_IV);
-                SetMonData(egg, MON_DATA_ATK_IV, &iv);
-                break;
-            case 2:
-                iv = GetBoxMonData(&daycare->mons[whichParents[i]].mon, MON_DATA_DEF_IV);
-                SetMonData(egg, MON_DATA_DEF_IV, &iv);
-                break;
-            case 3:
-                iv = GetBoxMonData(&daycare->mons[whichParents[i]].mon, MON_DATA_SPEED_IV);
-                SetMonData(egg, MON_DATA_SPEED_IV, &iv);
-                break;
-            case 4:
-                iv = GetBoxMonData(&daycare->mons[whichParents[i]].mon, MON_DATA_SPATK_IV);
-                SetMonData(egg, MON_DATA_SPATK_IV, &iv);
-                break;
-            case 5:
-                iv = GetBoxMonData(&daycare->mons[whichParents[i]].mon, MON_DATA_SPDEF_IV);
-                SetMonData(egg, MON_DATA_SPDEF_IV, &iv);
-                break;
-        }
-    }
+    motherIV = GetBoxMonData(&daycare->mons[0].mon, MON_DATA_SPDEF_IV);
+    fatherIV = GetBoxMonData(&daycare->mons[1].mon, MON_DATA_SPDEF_IV);
+    iv = motherIV > fatherIV ? motherIV : fatherIV;
+    ivRange = 31 - iv + 1;
+    iv = iv + (Random() % ivRange);
+    SetMonData(egg, MON_DATA_SPDEF_IV, &iv);
 }
 
 static void InheritPokeball(struct Pokemon *egg, struct BoxPokemon *father, struct BoxPokemon *mother)
