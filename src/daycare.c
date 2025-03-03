@@ -419,13 +419,7 @@ static u8 GetNumLevelsGainedForDaycareMon(struct DaycareMon *daycareMon)
 
 static u32 GetDaycareCostForSelectedMon(struct DaycareMon *daycareMon)
 {
-    u32 cost;
-
-    u8 numLevelsGained = GetNumLevelsGainedFromSteps(daycareMon);
-    GetBoxMonNickname(&daycareMon->mon, gStringVar1);
-    cost = 100 + 100 * numLevelsGained;
-    ConvertIntToDecimalStringN(gStringVar2, cost, STR_CONV_MODE_LEFT_ALIGN, 5);
-    return cost;
+    return 0;
 }
 
 static u16 GetDaycareCostForMon(struct DayCare *daycare, u8 slotId)
@@ -606,11 +600,14 @@ static void InheritIVs(struct Pokemon *egg, struct DayCare *daycare)
     u8 selectedIvs[5];
     u8 availableIVs[NUM_STATS];
     u8 whichParents[5];
+    u8 motherIV;
+    u8 fatherIV;
+    u8 ivRange;
     u8 iv;
-    u8 howManyIVs = 3;
+    u8 howManyIVs = 6;
 
-    if (motherItem == ITEM_DESTINY_KNOT || fatherItem == ITEM_DESTINY_KNOT)
-        howManyIVs = 5;
+    // if (motherItem == ITEM_DESTINY_KNOT || fatherItem == ITEM_DESTINY_KNOT)
+    //     howManyIVs = 5;
 
     // Initialize a list of IV indices.
     for (i = 0; i < NUM_STATS; i++)
@@ -674,7 +671,13 @@ static void InheritIVs(struct Pokemon *egg, struct DayCare *daycare)
         switch (selectedIvs[i])
         {
             case 0:
-                iv = GetBoxMonData(&daycare->mons[whichParents[i]].mon, MON_DATA_HP_IV);
+                motherIV = GetBoxMonData(&daycare->mons[0].mon, MON_DATA_HP_IV);
+                fatherIV = GetBoxMonData(&daycare->mons[1].mon, MON_DATA_HP_IV);
+                iv = motherIV > fatherIV ? motherIV : fatherIV;
+                
+                ivRange = 31 - iv + 1;
+                iv = iv + (Random() % rna)
+                
                 SetMonData(egg, MON_DATA_HP_IV, &iv);
                 break;
             case 1:
