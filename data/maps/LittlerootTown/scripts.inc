@@ -247,8 +247,26 @@ LittlerootTown_EventScript_SetRivalBirchPosForDexUpgradeFemale::
 	end
 
 LittlerootTown_EventScript_FatMan::
-	msgbox LittlerootTown_Text_CanUsePCToStoreItems, MSGBOX_NPC
+    goto_if_set FLAG_PORYGON_I_RECEIVED, LittlerootTown_EventScript_AlreadyGotPorygonI
+    lock
+    faceplayer
+    msgbox LittlerootTown_Text_GivePorygonI, MSGBOX_NPC
+    bufferspeciesname STR_VAR_1, SPECIES_PORYGON_I
+    setvar VAR_TEMP_TRANSFERRED_SPECIES, SPECIES_PORYGON_I
+    givemon SPECIES_PORYGON_I, 5
+    playfanfare MUS_OBTAIN_ITEM
+    message LittlerootTown_Text_ReceivedPorygonI
+    waitmessage
+    waitfanfare
+    setflag FLAG_SYS_POKEMON_GET
+    setflag FLAG_PORYGON_I_RECEIVED
+    msgbox LittlerootTown_Text_TakeCareOfPorygon, MSGBOX_NPC
+    release
 	end
+
+LittlerootTown_EventScript_AlreadyGotPorygonI::
+    msgbox LittlerootTown_Text_CanUsePCToStoreItems, MSGBOX_NPC
+    end
 
 LittlerootTown_EventScript_Boy::
 	msgbox LittlerootTown_Text_BirchSpendsDaysInLab, MSGBOX_NPC
@@ -1019,3 +1037,14 @@ LittlerootTown_Text_BirchSomethingToShowYouAtLab:
 	.string "I have something to show you.\n"
 	.string "Let's go to my LAB.$"
 
+LittlerootTown_Text_GivePorygonI:
+    .string "I got my hands on this weird POKéMON,\n"
+    .string "But I don't know what to do with it.\p"
+    .string "I don't even collect POKéMON...\n"
+    .string "Here, I think you should take it!$"
+
+LittlerootTown_Text_TakeCareOfPorygon:
+    .string "Take good care of this POKéMON.$"
+
+LittlerootTown_Text_ReceivedPorygonI:
+    .string "{PLAYER} received the {STR_VAR_1}!$"

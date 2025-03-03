@@ -1638,7 +1638,11 @@
 #define DAILY_FLAGS_END                             (FLAG_UNUSED_0x95F + (7 - FLAG_UNUSED_0x95F % 8))
 #define NUM_DAILY_FLAGS                             (DAILY_FLAGS_END - DAILY_FLAGS_START + 1)
 
-#define FLAGS_COUNT (DAILY_FLAGS_END + 1)
+// Custom flags
+#define FLAG_PORYGON_I_RECEIVED                     (DAILY_FLAGS_END + 0x1)
+#define CUSTOM_FLAGS_END                            (FLAG_PORYGON_I_RECEIVED + 0x1)
+
+#define FLAGS_COUNT (CUSTOM_FLAGS_END + 1)
 
 // Special Flags (Stored in EWRAM (sSpecialFlags), not in the SaveBlock)
 #define SPECIAL_FLAGS_START                     0x4000
